@@ -1,0 +1,873 @@
+/* Reset de margens e preenchimentos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Variáveis de Cores e Tipografia */
+:root {
+    --primary-color: #ffffff; /* Branco Principal */
+    --secondary-color: #ffeb3b; /* Amarelo Secundário */
+    --background-color: #000000; /* Preto de Fundo */
+    --font-family: 'Orbitron', sans-serif;
+    --container-bg: rgba(0, 0, 0, 0.8); /* Alterado para preto com opacidade */
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --text-color: #ffffff;
+    --subtext-color: #ffeb3b;
+}
+
+/* Estilos Globais */
+body {
+    font-family: var(--font-family);
+    background: var(--background-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+    transition: background 0.5s ease;
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 0.5em;
+    color: var(--text-color);
+}
+
+h1 {
+    font-size: 2.5em;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 2em;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 1.75em;
+    font-weight: 500;
+}
+
+p {
+    font-size: 1em;
+    color: var(--subtext-color);
+    margin-bottom: 1em;
+}
+
+/* Importação da Biblioteca AOS */
+@import 'https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css';
+
+/* Modo Escuro */
+body.dark-mode {
+    background: #000000;
+    color: #ffeb3b;
+}
+
+body.dark-mode h1, 
+body.dark-mode h2, 
+body.dark-mode h3,
+body.dark-mode p {
+    color: #ffffff;
+}
+
+body.dark-mode .navbar {
+    background: rgba(44, 62, 80, 0.8);
+}
+
+body.dark-mode .start-building {
+    background-color: #27ae60;
+}
+
+/* Cabeçalho e Navegação */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.9); /* Aumentar opacidade para melhor contraste */
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    color: var(--text-color);
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.logo img {
+    margin-right: 10px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1em;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+.start-building {
+    background-color: var(--secondary-color);
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+}
+
+.burger {
+    display: none;
+    cursor: pointer;
+}
+
+.burger div {
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+/* Nova Seção Hero */
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('new-hero-background.jpg') center center / cover no-repeat;
+    position: relative;
+    color: var(--text-color);
+    text-align: center;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    padding: 20px;
+}
+
+.hero h1 {
+    font-size: 4em;
+    margin-bottom: 20px;
+    color: var(--secondary-color);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.hero h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #fff;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
+}
+
+.hero p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    color: var(--subtext-color);
+    line-height: 1.5;
+}
+
+.hero a.start-building {
+    background: var(--secondary-color);
+    color: #000;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-size: 1.2em;
+    transition: background 0.3s, transform 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.hero a.start-building:hover {
+    background: var(--primary-color);
+    color: var(--background-color);
+    transform: scale(1.1);
+}
+
+/* Seção Sobre */
+.about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 60px 20px; /* Reduzir padding para melhor encaixe */
+    max-width: 1200px;
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.show .about {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.about img {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.about img:hover {
+    transform: scale(1.05);
+}
+
+.about .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.about .content h2 {
+    font-size: 2.5em;
+    color: var(--text-color);
+    margin-bottom: 15px;
+    animation: fadeInUp 2s ease-in-out;
+}
+
+.about .content p {
+    font-size: 1.2em;
+    color: var(--subtext-color);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    animation: fadeInUp 2.5s ease-in-out;
+}
+
+/* Seções Comunitária e Ecossistema */
+.community, .ecosystem {
+    padding: 60px 20px; /* Reduzir padding para melhor encaixe */
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.show .community, .show .ecosystem {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.community h2, .ecosystem h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: var(--text-color);
+    animation: fadeInUp 2s ease-in-out;
+}
+
+.community p, .ecosystem p {
+    font-size: 1.2em;
+    color: var(--subtext-color);
+    margin-bottom: 25px;
+    line-height: 1.6;
+    animation: fadeInUp 2.5s ease-in-out;
+}
+
+.community button, .ecosystem button {
+    padding: 15px 30px;
+    font-size: 1em;
+    border: none;
+    background: var(--secondary-color); /* Alterado para amarelo */
+    color: var(--primary-color); /* Texto branco para contraste */
+    cursor: pointer;
+    border-radius: 30px;
+    box-shadow: none; /* Remover sombra rosa */
+    transition: transform 0.3s ease, background 0.3s ease;
+    animation: fadeInUp 3s ease-in-out;
+}
+
+.community button {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: #000;
+    padding: 15px 30px;
+    border-radius: 30px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.community button:hover {
+    background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+.community button:hover, .ecosystem button:hover {
+    transform: scale(1.05);
+    background: var(--secondary-color);
+}
+
+/* Estilos para o link do botão "Entrar na Comunidade" */
+.community .start-building {
+    background: var(--secondary-color);
+    color: #000;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-size: 1em;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.community .start-building:hover {
+    background: var(--primary-color);
+    color: var(--background-color);
+    transform: scale(1.05);
+}
+
+/* Blog */
+.blog {
+    padding: 60px 20px; /* Reduzir padding para melhor encaixe */
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.show .blog {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.blog h2 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    color: var(--text-color);
+    animation: fadeInUp 2s ease-in-out;
+}
+
+.blog-posts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.post {
+    background: var(--container-bg);
+    border-radius: 15px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 2s ease-in-out forwards;
+}
+
+.post:hover {
+    transform: scale(1.05);
+}
+
+.post h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: var(--text-color);
+}
+
+.post p {
+    font-size: 1em;
+    color: var(--subtext-color);
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.post a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.post a:hover {
+    color: var(--primary-color);
+}
+
+/* Contato */
+.contact {
+    background: rgba(31, 28, 44, 0.9);
+    padding: 60px 20px; /* Reduzir padding para melhor encaixe */
+    color: #fff;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.show .contact {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.contact .container {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.contact h2 {
+    font-size: 2.5em;
+    margin-bottom: 15px;
+    animation: fadeInUp 2s ease-in-out;
+}
+
+.contact form {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact input, .contact textarea {
+    padding: 15px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 10px;
+    font-size: 1em;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease;
+}
+
+.contact input::placeholder, .contact textarea::placeholder {
+    color: #ccc;
+}
+
+.contact button {
+    padding: 15px;
+    font-size: 1em;
+    border: none;
+    background: var(--secondary-color); /* Alterado para amarelo */
+    color: #fff;
+    cursor: pointer;
+    border-radius: 30px;
+    box-shadow: none; /* Remover sombra rosa */
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.contact button:hover {
+    transform: scale(1.05);
+    background: var(--secondary-color);
+}
+
+/* Estilos aprimorados para a seção de Contato */
+.contact .contact-info {
+    margin-top: 20px;
+    font-size: 1em;
+}
+
+.contact .contact-info p {
+    margin-bottom: 10px;
+}
+
+.contact .contact-info a {
+    color: var(--secondary-color);
+    margin: 0 10px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact .contact-info a:hover {
+    color: var(--primary-color);
+}
+
+/* Seção FAQ */
+.faq {
+    padding: 100px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.5em;
+}
+
+.faq-item {
+    margin-bottom: 20px;
+}
+
+.faq-item h3 {
+    cursor: pointer;
+    position: relative;
+    padding-right: 20px;
+}
+
+.faq-item h3::after {
+    content: '+';
+    position: absolute;
+    right: 0;
+    transition: transform 0.3s;
+}
+
+.faq-item.active h3::after {
+    transform: rotate(45deg);
+}
+
+.faq-item p {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    padding: 0 20px;
+}
+
+.faq-item.active p {
+    max-height: 200px; /* Ajuste conforme necessário */
+    padding: 10px 20px;
+}
+
+.faq-item p a {
+    display: none;
+}
+
+.faq-item.active p a {
+    display: inline;
+}
+
+/* Formulário de Newsletter */
+.newsletter {
+    display: none;
+    padding: 60px 20px; /* Reduzir padding para melhor encaixe */
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.newsletter h2 {
+    font-size: 2.5em;
+    margin-bottom: 15px;
+}
+
+.newsletter form {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.newsletter input {
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    width: 300px;
+}
+
+.newsletter button {
+    padding: 15px 30px;
+    border: none;
+    background: var(--primary-color);
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.newsletter button:hover {
+    background: var(--secondary-color);
+}
+
+/* Footer */
+footer {
+    background: rgba(31, 28, 44, 0.8);
+    text-align: center;
+    padding: 60px 20px; /* Reduzir padding para melhor encaixe */
+    color: var(--text-color);
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.show footer {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Estilos aprimorados para os ícones sociais no rodapé */
+.social-links a {
+    color: var(--secondary-color);
+    margin: 0 10px;
+    text-decoration: none;
+    font-size: 1.5em;
+    transition: color 0.3s ease;
+}
+
+.social-links a i {
+    pointer-events: none; /* Evitar que o ícone capture eventos de mouse */
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+}
+
+/* Ajustar o tamanho dos ícones em telas menores */
+@media (max-width: 768px) {
+    .social-links a {
+        font-size: 1.2em;
+        margin: 0 8px;
+    }
+}
+
+/* Menu Responsivo */
+@media (max-width: 768px) {
+    .nav-links {
+        position: absolute;
+        right: 0;
+        height: 100vh;
+        top: 0;
+        background-color: var(--background-color);
+        flex-direction: column;
+        align-items: center;
+        width: 50%;
+        transform: translateX(100%);
+        transition: transform 0.5s ease-in;
+    }
+
+    .nav-links.nav-active {
+        transform: translateX(0);
+    }
+
+    .nav-links li {
+        opacity: 0;
+    }
+
+    .nav-links.nav-active li {
+        opacity: 1;
+        transition: opacity 0.5s ease-in;
+    }
+
+    .burger {
+        display: block;
+    }
+
+    .logo {
+        font-size: 1.2em;
+    }
+}
+
+/* Responsividade nas Textos */
+@media (max-width: 1200px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.75em;
+    }
+
+    h3 {
+        font-size: 1.5em;
+    }
+
+    p {
+        font-size: 0.95em;
+    }
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.75em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    h3 {
+        font-size: 1.25em;
+    }
+
+    p {
+        font-size: 0.9em;
+    }
+}
+
+/* Animações */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translatey(0);
+    }
+    50% {
+        transform: translatey(-20px);
+    }
+    100% {
+        transform: translatey(0);
+    }
+}
+
+@keyframes floatBackground {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes moveBackground {
+    from { background-position: 0 0; }
+    to { background-position: 100% 0; }
+}
+
+/* Animações AOS */
+[data-aos="fade-up"] {
+    opacity: 0;
+    transform: translateY(20px);
+    transition-property: opacity, transform;
+}
+
+[data-aos="fade-up"].aos-animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Botões e Links Melhorados */
+button, .nav-links a {
+    transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    font-family: var(--font-family);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    border: none;
+    color: var(--background-color);
+    padding: 12px 24px;
+    border-radius: 25px;
+    /* Adicionando mais estilos para modernização */
+    font-size: 1em;
+    cursor: pointer;
+    display: inline-block;
+}
+
+button:hover, .nav-links a:hover {
+    font-weight: 500;
+    transform: scale(1.05);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+    color: #fff; /* Alterado para branco para melhor contraste */
+}
+
+/* Melhorias na Aparência Geral */
+header, main, footer {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 60px;
+}
+
+/* Remover estilos da Roadmap */
+.roadmap {
+    display: none;
+}
+
+/* Rolagem Suave */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Estilos para a Criptomoeda Interativa */
+.crypto-coin {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    z-index: 1001;
+    transition: transform 0.2s ease-out;
+}
+
+.crypto-coin img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Animação Flutuante */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Efeito ao interagir com a rolagem */
+.crypto-coin.scrolled {
+    transform: rotate(360deg);
+}
+
+/* Estilos para a Criptomoeda 3D Interativa */
+#crypto3DContainer {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    transform: translate(-50%, -50%);
+    z-index: 1002;
+    pointer-events: none; /* Permite interação com elementos abaixo */
+}
+
+/* Garantir que os estilos do painel inicial estão corretos */
+/* ...existing code... */
+
+/* Estilo personalizado para o botão "Comprar Agora" */
+.start-building.buy-button {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    border: 2px solid var(--secondary-color);
+}
+
+.start-building.buy-button:hover {
+    background-color: var(--secondary-color);
+    color: var(--background-color);
+    transform: scale(1.05);
+}
